@@ -14,8 +14,9 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button btnGo;
-    TextView txtCorrect;
+    //----FIELDS DECLARATION------
+    Button btnStart;
+    TextView lblResult;
     TextView lblPoints;
     Button button0;
     Button button1;
@@ -33,23 +34,54 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     public void start(View view){
+        /*home button start will be invisible then
+        game relative layout will be visible*/
 
-        btnGo.setVisibility(View.INVISIBLE);
+        btnStart.setVisibility(View.INVISIBLE);
         gameRelativeLayout.setVisibility(RelativeLayout.VISIBLE);
         playAgain(findViewById(R.id.btnPlayAgain));
-
-
-
     }
+
+
+    public void playAgain(View view) {
+        score = 0;
+        numberofQuestions = 0;
+        timer.setText("30s");
+        lblPoints.setText("0/0");
+        lblResult.setText("");
+        btnPlayAgain.setVisibility(View.INVISIBLE);
+        generateQuestion();
+
+        // timer starts on 30 seconds
+        new CountDownTimer(30100,1000){
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timer.setText(String.valueOf(millisUntilFinished/1000)+"s");
+
+            }
+
+            @Override
+            public void onFinish() {
+                //upon finishing, btnPlayAgain will be visible then timer will be 0s
+                btnPlayAgain.setVisibility(View.VISIBLE);
+                timer.setText("0s");
+                lblResult.setText("YOUR SCORE" + Integer.toString(score)+ "/" + Integer.toString(numberofQuestions));
+                disableChoices();
+            }
+        }.start();
+    }
+
+
+
     public void generateQuestion(){
         //random variable
         Random rand = new Random();
         //a and b bounded to randomize upto 21 only
         int a = rand.nextInt(21);
         int b= rand.nextInt(21);
-        //lable will display what is randomized above
+        //label will display what is randomized above
         lblSum.setText(Integer.toString(a)+" + "+Integer.toString(b));
         //location will be randomized up to 4
         locationofCorrectAnswer = rand.nextInt(4);
@@ -89,10 +121,10 @@ public class MainActivity extends AppCompatActivity {
         //C
         if(view.getTag().toString().equals(Integer.toString(locationofCorrectAnswer))) {
             score++;
-            txtCorrect.setText("CORRECT");
+            lblResult.setText("CORRECT");
         }
         else{
-            txtCorrect.setText("BOBO AMPOPTA");
+            lblResult.setText("BOBO AMPOPTA");
         }
 
         numberofQuestions++;
@@ -101,6 +133,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void disableChoices(){
+        button0.setEnabled(false);
+        button1.setEnabled(false);
+        button2.setEnabled(false);
+        button3.setEnabled(false);
+
+    }
 
 
 
@@ -111,44 +150,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //declaration of fields
-        btnGo = findViewById(R.id.btnStart);
-        lblSum = findViewById(R.id.lblSum);
+        btnStart = findViewById(R.id.btnStart);
+        lblSum = findViewById(R.id.lblQuestion);
         button0 = findViewById(R.id.button0);
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
-        txtCorrect = findViewById(R.id.txtCorrect);
+        lblResult = findViewById(R.id.lblResult);
         lblPoints = findViewById(R.id.lblPoints);
-        timer = findViewById(R.id.txtTimer);
+        timer = findViewById(R.id.lblTimer);
         btnPlayAgain = findViewById(R.id.btnPlayAgain);
-        //playAgain(findViewById(R.id.btnPlayAgain));
+        playAgain(findViewById(R.id.btnPlayAgain));
         gameRelativeLayout = findViewById(R.id.gameRelativeLayout);
 
     }
 
-    public void playAgain(View view) {
-        score = 0;
-        numberofQuestions = 0;
-        timer.setText("30s");
-        lblPoints.setText("0/0");
-        txtCorrect.setText("");
-        btnPlayAgain.setVisibility(View.INVISIBLE);
-        generateQuestion();
 
-        new CountDownTimer(30100,1000){
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timer.setText(String.valueOf(millisUntilFinished/1000)+"s");
-
-            }
-
-            @Override
-            public void onFinish() {
-                btnPlayAgain.setVisibility(View.VISIBLE);
-                timer.setText("0s");
-                txtCorrect.setText("YOUR SCORE" + Integer.toString(score)+ "/" + Integer.toString(numberofQuestions));
-            }
-        }.start();
-    }
 }
