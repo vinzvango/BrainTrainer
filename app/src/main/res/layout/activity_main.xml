@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnStart"
+            android:layout_width="241dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="120dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginEnd="120dp"
+            android:background="@android:color/holo_green_light"
+            android:onClick="start"
+            android:padding="40dp"
+            android:text="START!"
+            android:textSize="24sp"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/gameRelativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="22dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTimer"
+                    android:layout_width="108dp"
+                    android:layout_height="match_parent"
+                    android:text="30s"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:id="@+id/lblSum"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="50sp"
+                    android:paddingTop="20dp"
+                    android:text="31-12"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:id="@+id/lblPoints"
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent"
+                    android:paddingLeft="80sp"
+                    android:text="0/0"
+                    android:textSize="36sp" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="26dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:clickable="false"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button0"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/holo_orange_dark"
+                    android:onClick="chooseAnswer"
+                    android:tag="0"
+                    android:text="3"
+                    android:textSize="120sp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="212dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/darker_gray"
+                    android:onClick="chooseAnswer"
+                    android:tag="1"
+                    android:text="3"
+                    android:textSize="120sp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_blue_bright"
+                    android:onClick="chooseAnswer"
+                    android:tag="2"
+                    android:text="3"
+                    android:textSize="120sp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="212dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/holo_red_dark"
+                    android:onClick="chooseAnswer"
+                    android:tag="3"
+                    android:text="3"
+                    android:textSize="120sp"
+                    app:layout_columnWeight="1"
+                    app:layout_gravity="fill"
+                    app:layout_rowWeight="1" />
+
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/txtCorrect"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="120dp"
+                android:layout_weight="0"
+                android:textSize="30sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="22dp" />
+
+            <Button
+                android:id="@+id/btnPlayAgain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="playAgain"
+                android:text="PLAY AGAIN!"
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
